@@ -1,7 +1,20 @@
-<div id="menu">
-  <div class="pure-menu">
-    <a class="pure-menu-heading" href="/">悔人不倦</a>
+<div id="menu" >
+  <div class="pure-menu" >
+    <% if current_user %>
+      <div class="pure-menu pure-menu-horizontal" >
+        <ul class="pure-menu-list" >
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link"><%= current_user.name  %></a>
+            <ul class="pure-menu-children">
+              <li class="pure-menu-item"><%= link_to 'New', new_article_path %></li>
+              <div class="divider" ></div>
+              <li class="pure-menu-item"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      Tired Killer
+    <% end %>  
   </div>
 </div>
-
-
