@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= render 'layouts/header' %>
+  </head>
+
+  <body>
+    <div id="layout">
+      <%= render 'layouts/sidebar' %>
+      <div dir="main" >
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>

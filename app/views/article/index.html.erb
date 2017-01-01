@@ -1,0 +1,9 @@
+<div class="ui container">
+  <div class="head">
+    <h1> Title </h1>
+    <hr>
+  </div>
+  <% @articles.each_slice(1) do |articles| %>
+    <%= render 'article_item', articles: articles %>
+  <% end %>
+</div>
