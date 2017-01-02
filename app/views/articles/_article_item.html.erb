@@ -5,19 +5,32 @@
         <div class="header"> <%= article.title %></div>
         <div class="meta"><%= article.user.name %></div>
         <div class="description"><%= article.content %></div>
-        <div class="meta" >
+        <div class="thumb_count_div" >
           <% if UserThumbedArticle.thumbed_up? current_user.id, article.id %>
-            <%= link_to users_thumb_up_path(article_id: article.id), method: :post, remote: true do %>
-              <%= fa_icon 'heart-o' %>
-            <% end %>
+            <span class="thumb_down_span" data-regret-count="<%= article.regret_count %>" >
+              <%= link_to users_thumb_up_path(article_id: article.id), method: :post, remote: true do %>
+                <%= fa_icon 'heart-o' %>
+              <% end %>
+              <span class='thumb_count'><%= article.regret_count %></span>
+            </span>
           <% else %>
-            <%= link_to users_cancel_thumb_up_path(article_id: article.id), method: :post, remote: true do %>
+            <span class="thumb_up_span">
               <%= fa_icon 'heart' %>
-            <% end %>
+              <span class='thumb_count' ><%= article.regret_count %></span>
+            </span>
           <% end %>
-          <%= article.regret_count %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $('.thumb_down_span').click(function(){
+    $(this).find('i').removeClass('fa-heart-o');
+    $(this).find('i').addClass('fa-heart');
+    var regretCount = parseInt($(this).data('regret-count')) + 1;
+    $(this).find('.thumb_count:first').text(regretCount);
+    $(this).find('a:first').css("pointer-events", "none");
+  });
+</script>

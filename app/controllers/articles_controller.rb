@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_article, only: [:show]
   def index
-    @articles = Article.includes(:user, :user_thumbed_articles).all.order('id desc')
+    @articles = Article.includes(:user, :user_thumbed_articles).all
   end
 
   def show
